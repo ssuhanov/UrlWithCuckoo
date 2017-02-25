@@ -1,4 +1,4 @@
-// MARK: - Mocks generated from file: UrlWithCuckoo/UrlSession.swift at 2017-02-24 08:58:10 +0000
+// MARK: - Mocks generated from file: UrlWithCuckoo/UrlSession.swift at 2017-02-25 10:12:02 +0000
 
 //
 //  UrlSession.swift

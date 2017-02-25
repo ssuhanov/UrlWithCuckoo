@@ -22,28 +22,49 @@ class UrlWithCuckooTests: XCTestCase {
         super.tearDown()
     }
     
-    func testExample() {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-    }
-    
-    func testPerformanceExample() {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
-        }
-    }
-    
-    func testUrl() {
+    func testGetSourceUrl() {
         let mock = MockUrlSession()
         let urlStr  = "http://riis.com"
         let url  = URL(string:urlStr)!
         
         // Arrange
         stub(mock) { (mock) in
-            when(mock.apiUrl).get.thenReturn(urlStr)
+            mock.getSourceUrl(apiUrl: urlStr).thenReturn(url)
         }
         
+        // Act and Assert
+        XCTAssertEqual(mock.getSourceUrl(apiUrl: urlStr), url)
+        XCTAssertNotEqual(mock.getSourceUrl(apiUrl: urlStr), URL(string:"http://google.com"))
+        verify(mock, times(2)).getSourceUrl(apiUrl: urlStr)
+    }
+    
+    func testCallApi() {
+        let mock = MockUrlSession()
+        let urlStr  = "http://riis.com"
+        let url  = URL(string:urlStr)!
+        var callApiCount = 0
+        
+        // Arrange
+        stub(mock) { mock in
+            mock.callApi(url: equal(to: url, equalWhen: { $0 == $1 })).then { (_) -> String in
+                callApiCount += 1
+                return "{'firstName': 'John','lastName': 'Smith'}"
+            }
+        }
+        
+        // Act and Assert
+        XCTAssertEqual(mock.callApi(url: url),"{'firstName': 'John','lastName': 'Smith'}")
+        XCTAssertNotEqual(mock.callApi(url: url), "Something else")
+        verify(mock, times(2)).callApi(url: equal(to: url, equalWhen: { $0 == $1 }))
+        XCTAssertEqual(callApiCount, 2)
+    }
+    
+    func testVariables() {
+        let mock = MockUrlSession()
+        let urlStr  = "http://riis.com"
+        let url  = URL(string:urlStr)!
+        
+        // Arrange
         stub(mock) { (mock) in
             when(mock.url).get.thenReturn(url)
         }
@@ -51,23 +72,19 @@ class UrlWithCuckooTests: XCTestCase {
         stub(mock) { (mock) in
             when(mock.session).get.thenReturn(URLSession())
         }
-        stub(mock) { (stub) in
-            stub.getSourceUrl(apiUrl: urlStr).thenReturn(url)
-        }
         
-        stub(mock) { mock in
-            mock.callApi(url: equal(to:url, equalWhen: { $0 == $1 })).thenReturn("{'firstName': 'John','lastName': 'Smith'}")
+        stub(mock) { (mock) in
+            when(mock.apiUrl).get.thenReturn(urlStr)
         }
         
         // Act and Assert
-        XCTAssertEqual(mock.apiUrl, urlStr)
         XCTAssertEqual(mock.url?.absoluteString, urlStr)
         XCTAssertNotNil(mock.session)
-        XCTAssertEqual(mock.callApi(url: url),"{'firstName': 'John','lastName': 'Smith'}")
+        XCTAssertEqual(mock.apiUrl, urlStr)
         
+        XCTAssertNotNil(verify(mock).url)
         XCTAssertNotNil(verify(mock).session)
         XCTAssertNotNil(verify(mock).apiUrl)
-        XCTAssertNotNil(verify(mock).url)
     }
     
 }
