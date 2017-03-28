@@ -23,7 +23,7 @@ class UrlWithCuckooTests: XCTestCase {
     }
     
     func testGetSourceUrl() {
-        let mock = MockUrlSession()
+        let mock = MockUrlSessionProtocol()
         let urlStr  = "http://riis.com"
         let url  = URL(string:urlStr)!
         
@@ -39,7 +39,7 @@ class UrlWithCuckooTests: XCTestCase {
     }
     
     func testCallApi() {
-        let mock = MockUrlSession()
+        let mock = MockUrlSessionProtocol()
         let urlStr  = "http://riis.com"
         let url  = URL(string:urlStr)!
         var callApiCount = 0
@@ -60,7 +60,7 @@ class UrlWithCuckooTests: XCTestCase {
     }
     
     func testVariables() {
-        let mock = MockUrlSession()
+        let mock = MockUrlSessionProtocol()
         let urlStr  = "http://riis.com"
         let url  = URL(string:urlStr)!
         

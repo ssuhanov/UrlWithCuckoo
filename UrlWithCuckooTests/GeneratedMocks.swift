@@ -1,10 +1,10 @@
-// MARK: - Mocks generated from file: UrlWithCuckoo/UrlSession.swift at 2017-02-25 10:12:02 +0000
+// MARK: - Mocks generated from file: UrlWithCuckoo/UrlSessionProtocol.swift at 2017-03-28 08:13:17 +0000
 
 //
-//  UrlSession.swift
+//  UrlSessionProtocol.swift
 //  UrlWithCuckoo
 //
-//  Created by Serge Sukhanov on 2/24/17.
+//  Created by Serge Sukhanov on 3/28/17.
 //  Copyright © 2017 Serge Sukhanov. All rights reserved.
 //
 
@@ -13,20 +13,20 @@ import Cuckoo
 
 import Foundation
 
-class MockUrlSession: UrlSession, Cuckoo.Mock {
-    typealias MocksType = UrlSession
-    typealias Stubbing = __StubbingProxy_UrlSession
-    typealias Verification = __VerificationProxy_UrlSession
+class MockUrlSessionProtocol: UrlSessionProtocol, Cuckoo.Mock {
+    typealias MocksType = UrlSessionProtocol
+    typealias Stubbing = __StubbingProxy_UrlSessionProtocol
+    typealias Verification = __VerificationProxy_UrlSessionProtocol
     let manager = Cuckoo.MockManager()
     
-    private var observed: UrlSession?
+    private var observed: UrlSessionProtocol?
     
-    func spy(on victim: UrlSession) -> Self {
+    func spy(on victim: UrlSessionProtocol) -> Self {
         observed = victim
         return self
     }
     
-    override var url: URL? {
+    var url: URL? {
         get {
             return manager.getter("url", original: observed.map { o in return { () -> URL? in o.url } })
         }
@@ -35,7 +35,7 @@ class MockUrlSession: UrlSession, Cuckoo.Mock {
         }
     }
     
-    override var session: URLSession? {
+    var session: URLSession? {
         get {
             return manager.getter("session", original: observed.map { o in return { () -> URLSession? in o.session } })
         }
@@ -44,7 +44,7 @@ class MockUrlSession: UrlSession, Cuckoo.Mock {
         }
     }
     
-    override var apiUrl: String? {
+    var apiUrl: String? {
         get {
             return manager.getter("apiUrl", original: observed.map { o in return { () -> String? in o.apiUrl } })
         }
@@ -53,15 +53,15 @@ class MockUrlSession: UrlSession, Cuckoo.Mock {
         }
     }
     
-    override func getSourceUrl(apiUrl: String) -> URL {
+    func getSourceUrl(apiUrl: String) -> URL {
         return manager.call("getSourceUrl(apiUrl: String) -> URL", parameters: (apiUrl), original: observed.map { o in return { (apiUrl: String) -> URL in o.getSourceUrl(apiUrl: apiUrl) } })
     }
     
-    override func callApi(url: URL) -> String {
+    func callApi(url: URL) -> String {
         return manager.call("callApi(url: URL) -> String", parameters: (url), original: observed.map { o in return { (url: URL) -> String in o.callApi(url: url) } })
     }
     
-    struct __StubbingProxy_UrlSession: Cuckoo.StubbingProxy {
+    struct __StubbingProxy_UrlSessionProtocol: Cuckoo.StubbingProxy {
         private let manager: Cuckoo.MockManager
         
         init(manager: Cuckoo.MockManager) {
@@ -91,7 +91,7 @@ class MockUrlSession: UrlSession, Cuckoo.Mock {
         }
     }
     
-    struct __VerificationProxy_UrlSession: Cuckoo.VerificationProxy {
+    struct __VerificationProxy_UrlSessionProtocol: Cuckoo.VerificationProxy {
         private let manager: Cuckoo.MockManager
         private let callMatcher: Cuckoo.CallMatcher
         private let sourceLocation: Cuckoo.SourceLocation
@@ -128,9 +128,9 @@ class MockUrlSession: UrlSession, Cuckoo.Mock {
     }
 }
 
-class UrlSessionStub: UrlSession {
+class UrlSessionProtocolStub: UrlSessionProtocol {
     
-    override var url: URL? {
+    var url: URL? {
         get {
             return DefaultValueRegistry.defaultValue(for: (URL?).self)
         }
@@ -138,7 +138,7 @@ class UrlSessionStub: UrlSession {
         }
     }
     
-    override var session: URLSession? {
+    var session: URLSession? {
         get {
             return DefaultValueRegistry.defaultValue(for: (URLSession?).self)
         }
@@ -146,7 +146,7 @@ class UrlSessionStub: UrlSession {
         }
     }
     
-    override var apiUrl: String? {
+    var apiUrl: String? {
         get {
             return DefaultValueRegistry.defaultValue(for: (String?).self)
         }
@@ -154,11 +154,11 @@ class UrlSessionStub: UrlSession {
         }
     }
     
-    override func getSourceUrl(apiUrl: String) -> URL {
+    func getSourceUrl(apiUrl: String) -> URL {
         return DefaultValueRegistry.defaultValue(for: (URL).self)
     }
     
-    override func callApi(url: URL) -> String {
+    func callApi(url: URL) -> String {
         return DefaultValueRegistry.defaultValue(for: (String).self)
     }
 }

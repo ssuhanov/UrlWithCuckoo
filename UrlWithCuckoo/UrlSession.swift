@@ -8,10 +8,10 @@
 
 import Foundation
 
-class UrlSession {
-    var url:URL?
-    var session:URLSession?
-    var apiUrl:String?
+class UrlSession: UrlSessionProtocol {
+    var url: URL?
+    var session: URLSession?
+    var apiUrl: String?
     
     func getSourceUrl(apiUrl:String) -> URL {
         url = URL(string:apiUrl)

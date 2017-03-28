@@ -15,7 +15,8 @@
 		B223F81E1E60277500E39AE1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B223F81C1E60277500E39AE1 /* LaunchScreen.storyboard */; };
 		B223F8291E60277600E39AE1 /* UrlWithCuckooTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B223F8281E60277600E39AE1 /* UrlWithCuckooTests.swift */; };
 		B223F8341E60279000E39AE1 /* UrlSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = B223F8331E60279000E39AE1 /* UrlSession.swift */; };
-		B223F8371E6029AE00E39AE1 /* GeneratedMocks.swift in Sources */ = {isa = PBXBuildFile; fileRef = B223F8361E6029AE00E39AE1 /* GeneratedMocks.swift */; };
+		B2ED66E21E8A51E800A83E7A /* UrlSessionProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2ED66E11E8A51E800A83E7A /* UrlSessionProtocol.swift */; };
+		B2ED66E41E8A526900A83E7A /* GeneratedMocks.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2ED66E31E8A526900A83E7A /* GeneratedMocks.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -41,7 +42,8 @@
 		B223F8281E60277600E39AE1 /* UrlWithCuckooTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UrlWithCuckooTests.swift; sourceTree = "<group>"; };
 		B223F82A1E60277600E39AE1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B223F8331E60279000E39AE1 /* UrlSession.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UrlSession.swift; sourceTree = "<group>"; };
-		B223F8361E6029AE00E39AE1 /* GeneratedMocks.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeneratedMocks.swift; sourceTree = "<group>"; };
+		B2ED66E11E8A51E800A83E7A /* UrlSessionProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UrlSessionProtocol.swift; sourceTree = "<group>"; };
+		B2ED66E31E8A526900A83E7A /* GeneratedMocks.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeneratedMocks.swift; sourceTree = "<group>"; };
 		CE7843789872121D8A310FB6 /* Pods-UrlWithCuckooTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UrlWithCuckooTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-UrlWithCuckooTests/Pods-UrlWithCuckooTests.release.xcconfig"; sourceTree = "<group>"; };
 		EEE9F1D0B52EAAA33725F779 /* Pods_UrlWithCuckooTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_UrlWithCuckooTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -108,6 +110,7 @@
 				B223F8131E60277500E39AE1 /* AppDelegate.swift */,
 				B223F8151E60277500E39AE1 /* ViewController.swift */,
 				B223F8331E60279000E39AE1 /* UrlSession.swift */,
+				B2ED66E11E8A51E800A83E7A /* UrlSessionProtocol.swift */,
 				B223F8171E60277500E39AE1 /* Main.storyboard */,
 				B223F81A1E60277500E39AE1 /* Assets.xcassets */,
 				B223F81C1E60277500E39AE1 /* LaunchScreen.storyboard */,
@@ -120,7 +123,7 @@
 			isa = PBXGroup;
 			children = (
 				B223F8281E60277600E39AE1 /* UrlWithCuckooTests.swift */,
-				B223F8361E6029AE00E39AE1 /* GeneratedMocks.swift */,
+				B2ED66E31E8A526900A83E7A /* GeneratedMocks.swift */,
 				B223F82A1E60277600E39AE1 /* Info.plist */,
 			);
 			path = UrlWithCuckooTests;
@@ -287,7 +290,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "# Define output file; change \"${PROJECT_NAME}Tests\" to your test's root source folder, if it's not the default name\nOUTPUT_FILE=\"./${PROJECT_NAME}Tests/GeneratedMocks.swift\"\necho \"Generated Mocks File = ${OUTPUT_FILE}\"\n\n# Define input directory; change \"${PROJECT_NAME}\" to your project's root source folder, if it's not the default name\nINPUT_DIR=\"./${PROJECT_NAME}\"\necho \"Mocks Input Directory = ${INPUT_DIR}\"\n\n# Generate mock files; include as many input files as you'd like to create mocks for\n${PODS_ROOT}/Cuckoo/run generate --testable \"${PROJECT_NAME}\" \\\n--output \"${OUTPUT_FILE}\" \\\n\"${INPUT_DIR}/UrlSession.swift\"";
+			shellScript = "# Define output file; change \"${PROJECT_NAME}Tests\" to your test's root source folder, if it's not the default name\nOUTPUT_FILE=\"./${PROJECT_NAME}Tests/GeneratedMocks.swift\"\necho \"Generated Mocks File = ${OUTPUT_FILE}\"\n\n# Define input directory; change \"${PROJECT_NAME}\" to your project's root source folder, if it's not the default name\nINPUT_DIR=\"./${PROJECT_NAME}\"\necho \"Mocks Input Directory = ${INPUT_DIR}\"\n\n# Generate mock files; include as many input files as you'd like to create mocks for\n${PODS_ROOT}/Cuckoo/run generate --testable \"${PROJECT_NAME}\" \\\n--output \"${OUTPUT_FILE}\" \\\n\"${INPUT_DIR}/UrlSessionProtocol.swift\"";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -296,6 +299,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B2ED66E21E8A51E800A83E7A /* UrlSessionProtocol.swift in Sources */,
 				B223F8341E60279000E39AE1 /* UrlSession.swift in Sources */,
 				B223F8161E60277500E39AE1 /* ViewController.swift in Sources */,
 				B223F8141E60277500E39AE1 /* AppDelegate.swift in Sources */,
@@ -307,7 +311,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B223F8291E60277600E39AE1 /* UrlWithCuckooTests.swift in Sources */,
-				B223F8371E6029AE00E39AE1 /* GeneratedMocks.swift in Sources */,
+				B2ED66E41E8A526900A83E7A /* GeneratedMocks.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
